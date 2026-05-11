@@ -8,12 +8,22 @@ public static class Arrays
     /// <returns>array of doubles that are the multiples of the supplied number</returns>
     public static double[] MultiplesOf(double number, int length)
     {
-        // TODO Problem 1 Start
-        // Remember: Using comments in your program, write down your process for solving this problem
-        // step by step before you write the code. The plan should be clear enough that it could
-        // be implemented by another person.
+        // Plan:
+        // Step 1: Create a new double array of size 'length' to hold our results.
+        // Step 2: Loop from 1 to 'length' (inclusive) using index i.
+        // Step 3: At each iteration, calculate the multiple by multiplying 'number' by i.
+        //         e.g. MultiplesOf(7, 5): 7*1=7, 7*2=14, 7*3=21, 7*4=28, 7*5=35
+        // Step 4: Store the result in the array at position (i - 1) since arrays are 0-indexed.
+        // Step 5: Return the completed array.
 
-        return []; // replace this return statement with your own
+        var result = new double[length];
+
+        for (var i = 1; i <= length; i++)
+        {
+            result[i - 1] = number * i;
+        }
+
+        return result;
     }
 
     /// <summary>
@@ -25,9 +35,27 @@ public static class Arrays
     /// </summary>
     public static void RotateListRight(List<int> data, int amount)
     {
-        // TODO Problem 2 Start
-        // Remember: Using comments in your program, write down your process for solving this problem
-        // step by step before you write the code. The plan should be clear enough that it could
-        // be implemented by another person.
+        // Plan:
+        // Step 1: Calculate the split point: (data.Count - amount).
+        //         This is the index where the list divides into two halves.
+        //         e.g. data={1,2,3,4,5,6,7,8,9}, amount=3 → splitPoint = 9 - 3 = 6
+        // Step 2: Slice the FIRST part from index 0 up to the split point.
+        //         e.g. GetRange(0, 6) → {1, 2, 3, 4, 5, 6}
+        // Step 3: Slice the SECOND part from the split point to the end.
+        //         These are the elements that will rotate to the front.
+        //         e.g. GetRange(6, 3) → {7, 8, 9}
+        // Step 4: Clear the original list.
+        // Step 5: Add the second part first (rotated elements go to the front).
+        //         Then add the first part after (remaining elements go to the back).
+        //         e.g. {7, 8, 9} + {1, 2, 3, 4, 5, 6} = {7, 8, 9, 1, 2, 3, 4, 5, 6}
+
+        var splitPoint = data.Count - amount;
+
+        var firstPart = data.GetRange(0, splitPoint);        // e.g. {1, 2, 3, 4, 5, 6}
+        var secondPart = data.GetRange(splitPoint, amount);  // e.g. {7, 8, 9}
+
+        data.Clear();
+        data.AddRange(secondPart);  // Rotated elements go to the front
+        data.AddRange(firstPart);   // Remaining elements go to the back
     }
 }
