@@ -1,11 +1,5 @@
 public static class Arrays
 {
-    /// <summary>
-    /// This function will produce an array of size 'length' starting with 'number' followed by multiples of 'number'.  For 
-    /// example, MultiplesOf(7, 5) will result in: {7, 14, 21, 28, 35}.  Assume that length is a positive
-    /// integer greater than 0.
-    /// </summary>
-    /// <returns>array of doubles that are the multiples of the supplied number</returns>
     public static double[] MultiplesOf(double number, int length)
     {
         // Plan:
@@ -26,13 +20,6 @@ public static class Arrays
         return result;
     }
 
-    /// <summary>
-    /// Rotate the 'data' to the right by the 'amount'.  For example, if the data is 
-    /// List<int>{1, 2, 3, 4, 5, 6, 7, 8, 9} and an amount is 3 then the list after the function runs should be 
-    /// List<int>{7, 8, 9, 1, 2, 3, 4, 5, 6}.  The value of amount will be in the range of 1 to data.Count, inclusive.
-    ///
-    /// Because a list is dynamic, this function will modify the existing data list rather than returning a new list.
-    /// </summary>
     public static void RotateListRight(List<int> data, int amount)
     {
         // Plan:
@@ -45,17 +32,16 @@ public static class Arrays
         //         These are the elements that will rotate to the front.
         //         e.g. GetRange(6, 3) → {7, 8, 9}
         // Step 4: Clear the original list.
-        // Step 5: Add the second part first (rotated elements go to the front).
-        //         Then add the first part after (remaining elements go to the back).
+        // Step 5: Add the second part first, then the first part after.
         //         e.g. {7, 8, 9} + {1, 2, 3, 4, 5, 6} = {7, 8, 9, 1, 2, 3, 4, 5, 6}
 
         var splitPoint = data.Count - amount;
 
-        var firstPart = data.GetRange(0, splitPoint);        // e.g. {1, 2, 3, 4, 5, 6}
-        var secondPart = data.GetRange(splitPoint, amount);  // e.g. {7, 8, 9}
+        var firstPart = data.GetRange(0, splitPoint);
+        var secondPart = data.GetRange(splitPoint, amount);
 
         data.Clear();
-        data.AddRange(secondPart);  // Rotated elements go to the front
-        data.AddRange(firstPart);   // Remaining elements go to the back
+        data.AddRange(secondPart);
+        data.AddRange(firstPart);
     }
 }
