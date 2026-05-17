@@ -11,3 +11,8 @@
         return result;
     }
 }
+/*Purpose 
+This function reverses a string. 
+It pushes each character onto a stack 
+(LIFO — Last In, First Out), 
+then pops them all off in reverse order.*/
